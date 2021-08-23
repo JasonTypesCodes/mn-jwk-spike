@@ -1,0 +1,21 @@
+This is a spike project for configuring generic JWK token signing and validation based heavily on these two guides:
+
+* https://guides.micronaut.io/latest/micronaut-security-keys-jwks-gradle-java.html[JWK KEYS ENDPOINT]
+* https://guides.micronaut.io/latest/micronaut-cli-jwkgen-gradle-java.html[JWK GENERATION WITH A MICRONAUT COMMAND LINE APPLICATION]
+
+To run:
+
+1. Start the signer
+* `cd signer`
+* `./gradlew run`
+
+2. Start the checker
+* `cd signer`
+* `./gradlew run`
+
+3. Get a token
+* `http :8081/login username=test password=test`
+** This uses https://httpie.io/[HTTPie]
+
+4. Send token to checker
+* `http :8080/token_info Authoization:"Bearer your.token.from.above"`

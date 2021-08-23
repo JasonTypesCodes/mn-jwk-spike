@@ -28,6 +28,8 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
 
+    implementation("com.github.jasontypescodes:mn-config-based-auth:0.1.0")
+
 }
 
 

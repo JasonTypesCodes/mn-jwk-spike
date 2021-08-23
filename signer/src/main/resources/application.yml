@@ -1,6 +1,8 @@
 micronaut:
   application:
     name: signer
+  server:
+    port: 8081
   security:
     authentication: bearer
     token:
@@ -8,4 +10,13 @@ micronaut:
         signatures:
           secret:
             generator:
-              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+              secret: "pleaseChangeThisSecretForANewOne"
+---
+config-based-auth:
+  enabled: true
+  accounts:
+    test:
+      secret: test
+      roles:
+        - ROLE1
+        - ROLE2
