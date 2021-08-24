@@ -7,7 +7,10 @@ To run:
 
 1. Start the signer
 * `cd signer`
-* `./gradlew run`
+** To run with pre-configured JWK Keys
+*** `./gradlew run -Dmicronaut.environments=jwkkey`
+** To run with an auto-generated key:
+*** `./gradlew run -Dmicronaut.environments=jwkauto`
 
 2. Start the checker
 * `cd signer`
