@@ -1,0 +1,6 @@
+jwk:
+  enabled: true
+  type: RSA
+  rsa:
+    auto: true
+
