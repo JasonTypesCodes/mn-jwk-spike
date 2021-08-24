@@ -6,6 +6,10 @@ micronaut:
   security:
     authentication: bearer
 ---
+logger:
+  levels:
+    mn.spike.jwk: DEBUG
+---
 jwk:
   enabled: true
   type: RSA

@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
-// import mn.spike.jwk.rsa.config.RSAConfigOld;
 
 @ConfigurationProperties("jwk")
 public class JwkConfig {
@@ -98,12 +97,12 @@ public class JwkConfig {
 	public static class RSAConfig {
 		private boolean auto = false;
 		private String signingKey = null;
-		private Map<String, Object> keys = new HashMap<>();
+		private Map<String, String> keys = new HashMap<>();
 
 		public RSAConfig() {
 		}
 
-		public RSAConfig(boolean auto, String signingKey, Map<String,Object> keys) {
+		public RSAConfig(boolean auto, String signingKey, Map<String,String> keys) {
 			this.auto = auto;
 			this.signingKey = signingKey;
 			this.keys = keys;
@@ -129,11 +128,11 @@ public class JwkConfig {
 			this.signingKey = signingKey;
 		}
 
-		public Map<String,Object> getKeys() {
+		public Map<String,String> getKeys() {
 			return this.keys;
 		}
 
-		public void setKeys(Map<String,Object> keys) {
+		public void setKeys(Map<String,String> keys) {
 			this.keys = keys;
 		}
 
@@ -147,7 +146,7 @@ public class JwkConfig {
 			return this;
 		}
 
-		public RSAConfig keys(Map<String,Object> keys) {
+		public RSAConfig keys(Map<String,String> keys) {
 			setKeys(keys);
 			return this;
 		}

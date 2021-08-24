@@ -14,11 +14,15 @@ import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.RSAKey;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.StringUtils;
 import io.micronaut.security.token.jwt.endpoints.JwkProvider;
 import io.micronaut.security.token.jwt.signature.rsa.RSASignatureGeneratorConfiguration;
 import mn.spike.jwk.config.JwkConfig;
+import mn.spike.jwk.exception.JwkException;
 
 @Singleton
 @Requires(property = "jwk.enabled", value = StringUtils.TRUE)
@@ -28,6 +32,8 @@ public class RSAKeyManager implements RSASignatureGeneratorConfiguration, JwkPro
 
 	private RSAKeyProvider provider;
 	private RSAKey signingKey;
+
+	private static final Logger LOG = LoggerFactory.getLogger(RSAKeyManager.class);
 
 	public RSAKeyManager(RSAKeyProvider provider) {
 		this.provider = provider;
@@ -39,9 +45,9 @@ public class RSAKeyManager implements RSASignatureGeneratorConfiguration, JwkPro
 		try {
 			return signingKey.toRSAPublicKey();
 		} catch (JOSEException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			String message = "Unable to retrieve public key for signing RSA key";
+			LOG.error(message, e);
+			throw new JwkException(message, e);
 		}
 	}
 
@@ -50,9 +56,9 @@ public class RSAKeyManager implements RSASignatureGeneratorConfiguration, JwkPro
 		try {
 			return signingKey.toRSAPrivateKey();
 		} catch (JOSEException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			String message = "Unable to retrieve private key for signing RSA key";
+			LOG.error(message, e);
+			throw new JwkException(message, e);
 		}
 	}
 

@@ -8,3 +8,7 @@ micronaut:
           jwks:
             signer:
               url: 'http://localhost:8081/keys'
+---
+logger:
+  levels:
+    mn.spike.jwk: DEBUG
