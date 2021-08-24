@@ -5,6 +5,6 @@ micronaut:
     token:
       jwt:
         signatures:
-          secret:
-            generator:
-              secret: "pleaseChangeThisSecretForANewOne"
+          jwks:
+            signer:
+              url: 'http://localhost:8081/keys'
